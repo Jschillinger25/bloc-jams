@@ -1,8 +1,6 @@
-var $playerBarControls = $('.main-controls .play-pause');
-
 var togglePlayFromPlayerBar = function() {
-    
     var songNumber = parseInt($(".song-item-number").attr('data-song-number'));
+    
     if($(this).html(playerBarPlayButton)) {
        $(this).html(playerBarPauseButton);
        setSong(songNumber);
@@ -17,6 +15,32 @@ var togglePlayFromPlayerBar = function() {
        $(".song-item-number").html(playButtonTemplate);
     }       
 };
+
+var filterTimeCode = function(timeInSeconds) {
+    parseFloat(timeInSeconds);
+    var y = 0;
+    var z = 0;
+    while(timeInSeconds > 60) {
+      timeInSeconds -= 60;
+      y++;
+    }
+    if(timeInSeconds < 10) {
+      return y + ":" + z + Math.floor(timeInSeconds);  
+    } else {
+       return y + ":" + Math.floor(timeInSeconds); 
+    }
+    
+};
+
+var setTotalTimeInPlayerBar = function(totalTime) {
+    $(".total-time").text(totalTime);
+};
+
+var setCurrentTimeInPlayerBar = function(currentTime) {
+    $(".current-time").text(currentTime);
+};
+
+var $playerBarControls = $('.main-controls .play-pause');
 
 var setSong = function(songNumber) {
     if (currentSoundFile) {
@@ -49,11 +73,12 @@ var getSongNumberCell = function(number) {
 };
 
 var createSongRow = function(songNumber, songName, songLength) {
+    
      var template =
         '<tr class="album-view-song-item">'
       + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
       + '  <td class="song-item-title">' + songName + '</td>'
-      + '  <td class="song-item-duration">' + songLength + '</td>'
+      + '  <td class="song-item-duration">' + filterTimeCode(songLength) + '</td>'
       + '</tr>'
       ;
  
@@ -145,7 +170,8 @@ var setCurrentAlbum = function(album) {
              // #11
              var seekBarFillRatio = this.getTime() / this.getDuration();
              var $seekBar = $('.seek-control .seek-bar');
- 
+             setCurrentTimeInPlayerBar(filterTimeCode(this.getTime()));
+             setTotalTimeInPlayerBar(filterTimeCode(this.getDuration()));
              updateSeekPercentage($seekBar, seekBarFillRatio);
          });
      }
