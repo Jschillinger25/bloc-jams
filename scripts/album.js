@@ -1,35 +1,18 @@
-var togglePlayFromPlayerBar = function() {
-    var songNumber = parseInt($(".song-item-number").attr('data-song-number'));
-    
-    if($(this).html(playerBarPlayButton)) {
-       $(this).html(playerBarPauseButton);
-       setSong(songNumber);
-       currentSoundFile.play();
-       updatePlayerBarSong();
-       $(".song-item-number").html(pauseButtonTemplate);
-    }
-    
-    if($(this).html(playerBarPauseButtonButton)) {
-       $(this).html(playerBarPlayButton);
-       currentSoundFile.pause();
-       $(".song-item-number").html(playButtonTemplate);
-    }       
-};
+var $playPauseButton = $('.main-controls .play-pause');
 
-var filterTimeCode = function(timeInSeconds) {
-    parseFloat(timeInSeconds);
-    var y = 0;
-    var z = 0;
-    while(timeInSeconds > 60) {
-      timeInSeconds -= 60;
-      y++;
-    }
-    if(timeInSeconds < 10) {
-      return y + ":" + z + Math.floor(timeInSeconds);  
-    } else {
-       return y + ":" + Math.floor(timeInSeconds); 
-    }
+var togglePlayFromPlayerBar = function() {
+    var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
     
+    if(currentSoundFile.isPaused()) {
+        currentlyPlayingCell.html(pauseButtonTemplate);
+        $playPauseButton.html(playerBarPauseButton);
+        currentSoundFile.play();
+    } else if(currentSoundFile) {
+        currentlyPlayingCell.html(playButtonTemplate);
+        $playPauseButton.html(playerBarPlayButton);
+        currentSoundFile.pause();
+    }
+       
 };
 
 var setTotalTimeInPlayerBar = function(totalTime) {
@@ -40,7 +23,13 @@ var setCurrentTimeInPlayerBar = function(currentTime) {
     $(".current-time").text(currentTime);
 };
 
-var $playerBarControls = $('.main-controls .play-pause');
+var filterTimeCode = function(timeInSeconds) {
+    var timeInSeconds = parseFloat(timeInSeconds);
+    var wholeMinutes = Math.floor(timeInSeconds / 60);
+    var wholeSeconds = ('0' + Math.floor(timeInSeconds % 60)).slice(-2);
+    return wholeMinutes + ':' + wholeSeconds;
+};
+
 
 var setSong = function(songNumber) {
     if (currentSoundFile) {
@@ -338,7 +327,7 @@ $(document).ready(function() {
      setupSeekBars();
      $previousButton.click(previousSong);
      $nextButton.click(nextSong);
-     $playerBarControls.click(togglePlayFromPlayerBar);
+     $playPauseButton.click(togglePlayFromPlayerBar);
  
      var albums = [albumPicasso, albumMarconi, albumHendrix];
      var index = 1;
