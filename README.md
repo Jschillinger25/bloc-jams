@@ -1,6 +1,6 @@
-Bloc Jams
+heartbeatz
 ==================
-Bloc Jams is a music player that allows users to browse for music, view albums, and songs, and play those they wish to listen to. 
+heartbeatz is a music player that allows users to browse for music, view albums, and songs, and play those they wish to listen to. 
 
 
 ![Landing Page](http://i.imgur.com/U3RpAdl.png)
@@ -11,4 +11,4 @@ Bloc Jams is a music player that allows users to browse for music, view albums, 
 
 
 
-![Album View](http://i.imgur.com/quVKg8E.png)
+![Song View](http://i.imgur.com/eRnXWSz.png)
