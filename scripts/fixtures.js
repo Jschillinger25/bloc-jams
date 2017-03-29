@@ -3,22 +3,22 @@ var albumPicasso = {
      artist: 'Pablo Picasso',
      label: 'Cubism',
      year: '1881',
-     albumArtUrl: 'assets/images/album_covers/01.png',
+     albumArtUrl: 'assets/images/album_covers/21.png',
      songs: [
          { title: 'Blue', duration: 161.71, audioUrl: 'assets/music/blue' },
          { title: 'Green', duration: 103.96, audioUrl: 'assets/music/green' },
          { title: 'Red', duration: 268.45, audioUrl: 'assets/music/red' },
          { title: 'Pink', duration: 153.14, audioUrl: 'assets/music/pink' },
-         { title: 'Magenta', duration: 374.22, audioUrl: 'assets/music/magenta' } 
+         { title: 'Magenta', duration: 374.22, audioUrl: 'assets/music/magenta' }
      ]
  };
- 
+
 var albumMarconi = {
      title: 'The Telephone',
      artist: 'Guglielmo Marconi',
      label: 'EM',
      year: '1909',
-     albumArtUrl: 'assets/images/album_covers/20.png',
+     albumArtUrl: 'assets/images/album_covers/18.png',
      songs: [
          { title: 'Hello, Operator?', duration: '1:01' },
          { title: 'Ring, ring, ring', duration: '5:01' },
@@ -33,7 +33,7 @@ var albumHendrix = {
      artist: 'Jimmy Hendrix',
      label: '60s',
      year: '1967',
-     albumArtUrl: 'assets/images/album_covers/20.png',
+     albumArtUrl: 'assets/images/album_covers/12.png',
      songs: [
          { title: 'Foxy Lady', duration: '1:01' },
          { title: 'Kiss the Sky', duration: '5:01' },
